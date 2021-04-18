@@ -9,9 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dental">
-        <activity android:name=".HistoryActivity"
-            android:label="History"
+        <activity android:name=".ProfileActivity"
+            android:label="profile"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.Dental.NoActionBar" />
+        <activity
+            android:name=".HistoryActivity"
+            android:label="History"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterActivity"
             android:label="Register"

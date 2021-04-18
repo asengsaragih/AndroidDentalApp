@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_profile:
                 drawerLayout.closeDrawers();
+                new Handler().postDelayed(() -> {startActivity(new Intent(this, ProfileActivity.class));
+                }, 250);
                 break;
         }
     }
