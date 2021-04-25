@@ -10,20 +10,39 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActionBarDrawerToggle mToggle;
+    private Button mComplaintsDiseaseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initial component
+        init();
+
+        //set data
+        setData();
+
         //configure drawer menu
         setupDrawerMenu();
+    }
+
+    private void setData() {
+        //action dari komponent
+        mComplaintsDiseaseButton.setOnClickListener(this);
+    }
+
+    private void init() {
+        //initial component in layout
+        mComplaintsDiseaseButton = findViewById(R.id.button_main_disease_complaints);
     }
 
     private void setupDrawerMenu() {
@@ -80,5 +99,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_main_disease_complaints:
+                startActivity(new Intent(getApplicationContext(), ChatBotActivity.class));
+                break;
+        }
     }
 }

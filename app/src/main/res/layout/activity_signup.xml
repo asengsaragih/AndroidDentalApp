@@ -94,6 +94,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/button_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
@@ -103,7 +104,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/view_login_to_register"
+            android:id="@+id/view_register_to_login"
             android:layout_width="match_parent"
             android:clickable="true"
             android:layout_height="wrap_content"
