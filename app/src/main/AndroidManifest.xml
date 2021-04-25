@@ -11,15 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dental">
-        <activity android:name=".SignupActivity"
-            android:theme="@style/Theme.Dental.NoActionBar"/>
+        <activity android:name=".ChatBotActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Chat Bot"></activity>
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:label="Update Profile"
+            android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/Theme.Dental.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
             android:label="profile"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.Dental.NoActionBar" />
+            android:theme="@style/Theme.Dental.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".HistoryActivity"
             android:label="History"
@@ -29,11 +43,7 @@
             android:label="Register"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

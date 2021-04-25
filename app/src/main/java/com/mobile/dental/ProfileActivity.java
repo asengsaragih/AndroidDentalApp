@@ -53,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.action_edit:
+                startActivity(new Intent(getApplicationContext(), UpdateProfileActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

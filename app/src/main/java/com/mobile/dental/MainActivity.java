@@ -10,20 +10,39 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActionBarDrawerToggle mToggle;
+    private Button mComplaintsDissaseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initial component
+        init();
+
+        //setData
+        setData();
+
         //configure drawer menu
         setupDrawerMenu();
+    }
+
+    private void setData() {
+        //action dari component
+        mComplaintsDissaseButton.setOnClickListener(this);
+    }
+
+    private void init() {
+        //initial component
+        mComplaintsDissaseButton =  findViewById(R.id.button_main_dissase_complaint);
     }
 
     private void setupDrawerMenu() {
@@ -81,5 +100,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_main_dissase_complaint:
+                startActivity(new Intent(getApplicationContext(),ChatBotActivity.class));
+                break;
+        }
     }
 }

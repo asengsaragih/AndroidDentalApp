@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Switch;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private View loginToRegister;
+    private Button mLoginButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +24,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void init() {
         loginToRegister = findViewById(R.id.view_login_to_register);
+        mLoginButton = findViewById(R.id.button_login);
     }
 
     private void setData() {
         loginToRegister.setOnClickListener(this);
+        mLoginButton.setOnClickListener(this);
     }
 
 
@@ -34,6 +38,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.view_login_to_register:
                 startActivity(new Intent(getApplicationContext(), SignupActivity.class));
+                break;
+            case R.id.button_login:
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 break;
         }
     }
