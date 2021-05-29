@@ -5,17 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import com.mobile.dental.adapter.SpinnerDoctorAdapter;
+import com.mobile.dental.base.BaseActivity;
 import com.mobile.dental.base.Constant;
+import com.mobile.dental.model.Doctor;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class RegisterActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText mDateEdittext;
+    private AutoCompleteTextView mDoctorSpinner;
+
     private final Calendar mCalendar = Calendar.getInstance();
 
     @Override
@@ -23,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        init() ;
+        init();
     }
 
     private void init(){
@@ -33,6 +44,36 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //click listener
         mDateEdittext.setOnClickListener(this);
 
+        //initialisespinner
+        mDoctorSpinner = findViewById(R.id.spinner_register_doctor);
+        spinnerSetup();
+    }
+
+    private void spinnerSetup() {
+        Call<List<Doctor>> getAllDoctorCall = mApiService.getAllDoctor();
+
+        getAllDoctorCall.enqueue(new Callback<List<Doctor>>() {
+            @Override
+            public void onResponse(Call<List<Doctor>> call, Response<List<Doctor>> response) {
+                if (response.code() != 200) {
+                    return;
+                }
+
+                if (response.body() == null) {
+                    return;
+                }
+
+                List<Doctor> doctors = response.body();
+
+                SpinnerDoctorAdapter adapter = new SpinnerDoctorAdapter(RegisterActivity.this, doctors);
+                mDoctorSpinner.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Doctor>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

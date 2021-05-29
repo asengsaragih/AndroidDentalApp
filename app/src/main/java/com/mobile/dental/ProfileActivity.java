@@ -11,10 +11,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bumptech.glide.Glide;
+import com.mobile.dental.base.BaseActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends BaseActivity implements View.OnClickListener {
 
     private CircleImageView mPictureImageView;
 
