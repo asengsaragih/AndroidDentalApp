@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class UpdateProfileActivity extends AppCompatActivity {
+import com.mobile.dental.base.BaseActivity;
+
+public class UpdateProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

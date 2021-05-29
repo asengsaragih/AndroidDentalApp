@@ -12,12 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobile.dental.adapter.HistoryAdapter;
+import com.mobile.dental.base.BaseActivity;
 import com.mobile.dental.model.History;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends BaseActivity {
 
     private static final String TAG = "HistoryActivityTag";
     private RecyclerView mHistoryRecycleView;

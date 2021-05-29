@@ -12,13 +12,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.mobile.dental.adapter.ChatBotAdapter;
+import com.mobile.dental.base.BaseActivity;
 import com.mobile.dental.base.Constant;
 import com.mobile.dental.model.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatBotActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChatBotActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText mMessageEdittext;
     private Button mSendButton;
