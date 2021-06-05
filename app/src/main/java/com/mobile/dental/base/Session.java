@@ -32,7 +32,7 @@ public class Session {
     }
     public Auth getAuthSession(){
         //get auth session
-        Auth auth = new Auth(null, null, null, null, null);
+        Auth auth = new Auth(null, null, null, null, null, null);
         String result = mPreference.getString(SESSION_USER,gson.toJson(auth)
         );
         return gson.fromJson(result, Auth.class);
