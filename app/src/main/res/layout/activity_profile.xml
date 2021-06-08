@@ -10,50 +10,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="horizontal">
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="0.7">
+            android:text="User ID"
+            android:textColor="@android:color/darker_gray"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageview_profile_picture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textview_profile_uid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:layout_gravity="center"
-            android:paddingStart="24dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView_profile_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aldi Wahyu Saragih"/>
-
-            <TextView
-                android:id="@+id/textView_profile_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="21 Years Old" />
-
-            <TextView
-                android:id="@+id/textView_profile_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Male"/>
-
-        </LinearLayout>
-
+            android:text="-"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,13 +37,34 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone Number"
+            android:text="Fullname"
             android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/textview_profile_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+628 21 9865 5894"/>
+            android:text="Username"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/textview_profile_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"/>
     </LinearLayout>
 
     <LinearLayout
@@ -89,9 +81,10 @@
             android:textColor="@android:color/darker_gray"/>
 
         <TextView
+            android:id="@+id/textview_profile_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ratasya@mail.com"/>
+            android:text="-"/>
     </LinearLayout>
 
     <LinearLayout
@@ -104,13 +97,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Blood Type"
+            android:text="Kontak"
             android:textColor="@android:color/darker_gray"/>
 
         <TextView
+            android:id="@+id/textview_profile_kontak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A+"/>
+            android:text="-"/>
     </LinearLayout>
 
 </LinearLayout>
