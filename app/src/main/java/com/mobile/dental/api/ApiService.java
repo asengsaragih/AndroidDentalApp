@@ -3,7 +3,9 @@ package com.mobile.dental.api;
 import com.mobile.dental.model.Auth;
 import com.mobile.dental.model.Doctor;
 import com.mobile.dental.model.PasientResponse;
+import com.mobile.dental.model.Profile;
 import com.mobile.dental.model.Register;
+import com.mobile.dental.model.UpdateProfileResult;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -54,4 +57,18 @@ public interface ApiService {
     @GET("index.php/api/User_Klinik/getAllDokter")
     Call<List<Doctor>> getAllDoctor();
 
+    @GET("index.php/api/User_Klinik/profile/{idUser}")
+    Call<List<Profile>> getUser(@Path("idUser") String code);
+
+    //update profile
+    @FormUrlEncoded
+    @POST("index.php/api/User_Klinik/putProfile")
+    Call<UpdateProfileResult> updateProfile(
+            @Field("id") String id,
+            @Field("fullname") String fullname,
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("email") String email,
+            @Field("kontak") String kontak
+    );
 }
