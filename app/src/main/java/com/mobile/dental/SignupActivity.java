@@ -22,6 +22,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private EditText mEmailEdittext;
     private EditText mPasswordEdittext;
     private EditText mPhoneEdittext;
+    private EditText mFullnameEdittext;
 
     private static final String TAG = "SignupActivityTag";
 
@@ -48,6 +49,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         mEmailEdittext = findViewById(R.id.edittext_register_email);
         mPasswordEdittext = findViewById(R.id.edittext_register_password);
         mPhoneEdittext = findViewById(R.id.edittext_register_phone);
+        mFullnameEdittext = findViewById(R.id.edittext_register_fullname);
     }
 
 
@@ -82,8 +84,9 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         String email = mEmailEdittext.getText().toString();
         String password = mPasswordEdittext.getText().toString();
         String phone = mPhoneEdittext.getText().toString();
+        String fullname = mFullnameEdittext.getText().toString();
 
-        Call<Register> registerCall = mApiService.register(username, password, email, phone);
+        Call<Register> registerCall = mApiService.register(username, password, email, phone, fullname);
 
         //execute api nya
         registerCall.enqueue(new Callback<Register>() {

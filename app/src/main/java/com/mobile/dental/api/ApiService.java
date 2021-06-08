@@ -2,6 +2,7 @@ package com.mobile.dental.api;
 
 import com.mobile.dental.model.Auth;
 import com.mobile.dental.model.Doctor;
+import com.mobile.dental.model.PasientResponse;
 import com.mobile.dental.model.Register;
 
 import java.util.List;
@@ -29,7 +30,25 @@ public interface ApiService {
             @Field("username") String username,
             @Field("pass") String pass,
             @Field("email") String email,
-            @Field("contact") String contact
+            @Field("contact") String contact,
+            @Field("fullname") String fullname
+    );
+
+    //untuk form pendaftaran
+    @FormUrlEncoded
+    @POST("index.php/api/User_Klinik/pasien")
+    Call<PasientResponse> postPasient(
+            @Field("nama_pasient") String namaPasien,
+            @Field("gender") String gender,
+            @Field("umur") String umur,
+            @Field("gol_darah") String golDarah,
+            @Field("keluhan") String keluhan,
+            @Field("tanggal_pendaftaran") String tanggalPendaftaran,
+            @Field("waktu_pelayanan") String waktuPelayanan,
+            @Field("tanggal_pelayanan") String tanggalPelayanan,
+            @Field("id_user") String idUser,
+            @Field("id_dokter") String idDokter,
+            @Field("id_status") String idStatus
     );
 
     @GET("index.php/api/User_Klinik/getAllDokter")

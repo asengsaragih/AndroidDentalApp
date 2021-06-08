@@ -49,7 +49,9 @@ public class SpinnerDoctorAdapter extends ArrayAdapter<Doctor> {
         Doctor doctor = getItem(position);
 
         if (doctor != null) {
-            tvName.setText(doctor.getName());
+            if (doctor.getStatus().equals("Unavailable")){
+                tvName.setText(doctor.getName());
+            }
         }
 
         return convertView;

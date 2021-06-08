@@ -3,6 +3,7 @@ package com.mobile.dental.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Doctor implements Serializable {
     @SerializedName("id_dokter")
@@ -15,9 +16,8 @@ public class Doctor implements Serializable {
     private String age;
 
     private String gender;
-    private String jamPraktik;
-    private String hariPraktikAwal;
-    private String hariPraktikAkhir;
+    private List<String> jamPraktik;
+    private List<String> hariKerja;
     private String status;
 
     public String getId() {
@@ -36,16 +36,12 @@ public class Doctor implements Serializable {
         return gender;
     }
 
-    public String getJamPraktik() {
+    public List<String> getJamPraktik() {
         return jamPraktik;
     }
 
-    public String getHariPraktikAwal() {
-        return hariPraktikAwal;
-    }
-
-    public String getHariPraktikAkhir() {
-        return hariPraktikAkhir;
+    public List<String> getHariKerja() {
+        return hariKerja;
     }
 
     public String getStatus() {
