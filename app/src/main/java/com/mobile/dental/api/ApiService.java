@@ -2,7 +2,10 @@ package com.mobile.dental.api;
 
 import com.mobile.dental.model.Auth;
 import com.mobile.dental.model.Doctor;
+import com.mobile.dental.model.PasientResponse;
+import com.mobile.dental.model.Profile;
 import com.mobile.dental.model.Register;
+import com.mobile.dental.model.UpdateProfileResult;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -29,10 +33,42 @@ public interface ApiService {
             @Field("username") String username,
             @Field("pass") String password,
             @Field("email") String email,
-            @Field("contact") String contact
+            @Field("contact") String contact,
+            @Field("fullname") String fullname
     );
+
+    @FormUrlEncoded
+    @POST("index.php/api/User_Klinik/pasien")
+    Call<PasientResponse> postPasient(
+            @Field("nama_pasient") String username,
+            @Field("gender") String gender,
+            @Field("umur") String umur,
+            @Field("gol_darah") String gol_darah,
+            @Field("keluhan") String keluhan,
+            @Field("tanggal_pendaftaran") String tanggalPendaftaran,
+            @Field("waktu_pelayanan") String waktuPelayanan,
+            @Field("tanggal_pelayanan") String tanggalPelayanan,
+            @Field("id_user") String idUser,
+            @Field("id_dokter") String idDokter,
+            @Field("id_status") String idStatus
+    );
+
 
     @GET("index.php/api/User_Klinik/getAllDokter")
     Call<List<Doctor>> getAllDoctor();
 
+    @GET("index.php/api/User_Klinik/profile/{idUser}")
+    Call<List<Profile>> getUser(@Path("idUser") String code);
+
+    //update profile
+    @FormUrlEncoded
+    @POST("index.php/api/User_Klinik/putProfile")
+    Call<UpdateProfileResult> updateProfile(
+            @Field("id") String id,
+            @Field("fullname") String fullname,
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("email") String email,
+            @Field("kontak") String kontak
+    );
 }

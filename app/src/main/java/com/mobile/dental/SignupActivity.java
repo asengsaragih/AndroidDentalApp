@@ -23,6 +23,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
     private EditText mPhoneEditText;
+    private EditText mFullnameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         mEmailEditText = findViewById(R.id.edittext_register_email);
         mPasswordEditText = findViewById(R.id.edittext_register_password);
         mPhoneEditText = findViewById(R.id.edittext_register_phone);
+        mFullnameEditText = findViewById(R.id.edittext_register_fullname);
     }
 
 
@@ -76,8 +78,9 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
         String phone = mPhoneEditText.getText().toString();
+        String fullname = mFullnameEditText.getText().toString();
 
-        Call<Register> registerCall = mApiService.register(username, password, email,phone);
+        Call<Register> registerCall = mApiService.register(fullname, username, password, email, phone);
 
         //execute api nya
         registerCall.enqueue(new Callback<Register>() {
