@@ -1,6 +1,7 @@
 package com.mobile.dental.api;
 
 import com.mobile.dental.model.Auth;
+import com.mobile.dental.model.Bot;
 import com.mobile.dental.model.Doctor;
 import com.mobile.dental.model.PasientResponse;
 import com.mobile.dental.model.Profile;
@@ -71,4 +72,13 @@ public interface ApiService {
             @Field("email") String email,
             @Field("kontak") String kontak
     );
+
+    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/0/0")
+    Call<Bot> getInitialBot();
+
+    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/0")
+    Call<List<Bot.Chatbot>> chooseLayanan(@Path("idLayanan") String code);
+
+    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
+    Call<List<Bot.Chatbot>> resultDeskripsi(@Path("idLayanan") String code, @Path("idResult") String idResult);
 }
