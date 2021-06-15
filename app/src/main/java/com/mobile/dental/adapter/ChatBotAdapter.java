@@ -65,6 +65,11 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.ChatBotH
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        this.mData.clear();
+        notifyDataSetChanged();
+    }
+
     static class ChatBotHolder extends RecyclerView.ViewHolder {
 
         final TextView chatLeft;

@@ -15,6 +15,9 @@ import com.mobile.dental.R;
 import com.mobile.dental.api.ApiClient;
 import com.mobile.dental.api.ApiService;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class BaseActivity extends AppCompatActivity {
 
     protected AppCompatActivity mActivity;
@@ -62,5 +65,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void toast(String message){
         //fungsi untuk menampilkan toast
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    protected String getCurrentTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Calendar calendar = Calendar.getInstance();
+
+        return dateFormat.format(calendar.getTime());
     }
 }
