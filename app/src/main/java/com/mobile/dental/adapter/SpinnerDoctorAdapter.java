@@ -48,7 +48,7 @@ public class SpinnerDoctorAdapter extends ArrayAdapter<Doctor> {
         Doctor doctor = getItem(position);
 
         if (doctor != null) {
-            if (doctor.getStatus().equals("Unavailable")) {
+            if (doctor.getStatus().equals("Available")) {
                 tvName.setText(doctor.getName());
             }
         }
