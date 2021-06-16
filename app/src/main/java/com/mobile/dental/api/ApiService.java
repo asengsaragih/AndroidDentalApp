@@ -73,13 +73,13 @@ public interface ApiService {
             @Field("kontak") String kontak
     );
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/0/0")
+    @GET("https://dental-clinic-telkom.000webhostapp.com/index.php/api/User_Klinik/chatbot/0/0")
     Call<Bot> getInitialBot();
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/0")
+    @GET("https://dental-clinic-telkom.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/0")
     Call<List<Bot.Chatbot>> chooseLayanan(@Path("idLayanan") String code);
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
+    @GET("https://dental-clinic-telkom.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
     Call<List<Bot.Chatbot>> resultDeskripsi(@Path("idLayanan") String code, @Path("idResult") String idResult);
 
 }
