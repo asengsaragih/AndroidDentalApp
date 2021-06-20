@@ -8,13 +8,11 @@
     android:paddingVertical="8dp">
 
     <TextView
-        android:id="@+id/textView_list_item_dashboard_status"
+        android:id="@+id/textview_list_item_dashboard_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Pendaftaran berhasil diverifikasi" />
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +27,7 @@
             android:text="Nama" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_nama"
+            android:id="@+id/textview_list_item_dashboard_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -38,6 +36,7 @@
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +50,7 @@
             android:text="Jenis Kelamin" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_gender"
+            android:id="@+id/textview_list_item_dashboard_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -60,6 +59,7 @@
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:text="Umur" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_umur"
+            android:id="@+id/textview_list_item_dashboard_umur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -82,6 +82,7 @@
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
             android:text="Golongan Darah" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_goldar"
+            android:id="@+id/textview_list_item_dashboard_goldar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -104,6 +105,7 @@
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,15 +119,16 @@
             android:text="Keluhan" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_keluhan"
+            android:id="@+id/textview_list_item_dashboard_keluhan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            tools:text="Sakit gigi"
+            tools:text="Gusi Bengkak"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -139,15 +142,16 @@
             android:text="Tanggal Pendaftaran" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_tanggal_pendaftaran"
+            android:id="@+id/textview_list_item_dashboard_tanggal_pendaftaran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            tools:text="2021-25-05"
+            tools:text="2021-05-23"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -161,7 +165,7 @@
             android:text="Waktu Pelayanan" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_waktu_pelayanan"
+            android:id="@+id/textview_list_item_dashboard_waktu_pelayanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -170,6 +174,7 @@
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,7 +188,7 @@
             android:text="Tanggal Pelayanan" />
 
         <TextView
-            android:id="@+id/textView_list_item_dashboard_tanggal_pelayanan"
+            android:id="@+id/textview_list_item_dashboard_tanggal_pelayanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -193,19 +198,17 @@
 
     </LinearLayout>
 
-
     <TextView
-        android:id="@+id/textView_list_item_dashboard_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Informasi" />
 
     <TextView
+        android:id="@+id/textview_list_item_dashboard_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Silahkan datang ke klinik dengan tepat waktu untuk melakukan konsultasi dan pembayaran. Hasil dokter pada menu riwayat setelah melakukan pembayaran" />
-
 
     <Button
         android:id="@+id/button_list_item_dashboard_batal"

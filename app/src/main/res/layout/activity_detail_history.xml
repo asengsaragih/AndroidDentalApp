@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Id Pendaftran"/>
+        android:text="ID Pendaftaran"/>
 
     <TextView
         android:id="@+id/textview_detail_history_id_pendaftaran"
@@ -28,7 +28,7 @@
         android:text="Nama Pasien"/>
 
     <TextView
-        android:id="@+id/textview_detail_history_pasient"
+        android:id="@+id/textview_detail_history_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Artika"/>
+        tools:text="Hana Widi"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -54,11 +54,11 @@
         android:text="Tanggal Pelayanan"/>
 
     <TextView
-        android:id="@+id/textview_detail_history_tanggal_pelayanan"
+        android:id="@+id/textview_detail_history_tanggal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="17 Agustus"/>
+        tools:text="2021-04-01"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -67,20 +67,20 @@
         android:text="Waktu Pelayanan"/>
 
     <TextView
-        android:id="@+id/textview_detail_history_waktu_pelayanan"
+        android:id="@+id/textview_detail_history_waktu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="18.00"/>
+        tools:text="15:30"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Hasil"/>
+        android:text="Hasil Pemeriksaan"/>
 
     <TextView
-        android:id="@+id/textview_detail_history_hasil_pemeriksaan"
+        android:id="@+id/textview_detail_history_hasil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
@@ -97,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Kompres dengan air hangat"/>
+        tools:text="Tidak Makan Keras"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -110,6 +110,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Zentri"/>
+        tools:text="Paracetamol 500mg"/>
 
 </LinearLayout>

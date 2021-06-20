@@ -92,7 +92,5 @@ public interface ApiService {
     Call<List<Dashboard>> getDashboard(@Path("idUser") String idUser);
 
     @POST("index.php/api/User_Klinik/cancelByPasien/{idPendaftaran}")
-    Call<DeletePendaftaran> cancleDashboard(@Path("idPendaftaran")String idPendaftaran);
-
+    Call<DeletePendaftaran> cancleDashboard(@Path("idPendaftaran") String idPendaftaran);
 }
-

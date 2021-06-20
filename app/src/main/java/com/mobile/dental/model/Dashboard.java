@@ -17,6 +17,8 @@ public class Dashboard implements Serializable {
     @SerializedName("gol_darah")
     private String golDarah;
 
+    private String keluhan;
+
     @SerializedName("tanggal_pendaftaran")
     private String tanggalPendaftaran;
 
@@ -53,6 +55,10 @@ public class Dashboard implements Serializable {
 
     public String getGolDarah() {
         return golDarah;
+    }
+
+    public String getKeluhan() {
+        return keluhan;
     }
 
     public String getTanggalPendaftaran() {

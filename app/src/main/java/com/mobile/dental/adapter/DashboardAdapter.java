@@ -15,52 +15,49 @@ import com.mobile.dental.model.Dashboard;
 
 import java.util.List;
 
-public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashboardHolder>{
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashboardHolder> {
 
-    private final Context mcontext;
+    private final Context mContext;
     private final List<Dashboard> mData;
-    private final View mEmpty;
+    private final View mEmptyView;
     private final ClickHandler mHandler;
 
-    public DashboardAdapter(Context mcontext, List<Dashboard> mData, View mEmpty, ClickHandler mHandler) {
-        this.mcontext = mcontext;
+    public DashboardAdapter(Context mContext, List<Dashboard> mData, View mEmptyView, ClickHandler mHandler) {
+        this.mContext = mContext;
         this.mData = mData;
-        this.mEmpty = mEmpty;
+        this.mEmptyView = mEmptyView;
         this.mHandler = mHandler;
     }
 
     @NonNull
     @Override
     public DashboardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mcontext).inflate(R.layout.layout_verify_home, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_verify_home, parent, false);
         return new DashboardHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DashboardHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DashboardAdapter.DashboardHolder holder, int position) {
         Dashboard dashboard = mData.get(position);
 
-        holder.tvNamePasien.setText(dashboard.getNamaPasient());
+        holder.tvNamaPasien.setText(dashboard.getNamaPasient());
         holder.tvJenisKelamin.setText(dashboard.getGender());
         holder.tvUmur.setText(dashboard.getUmur());
         holder.tvGolDar.setText(dashboard.getGolDarah());
-        //holder.tvKeluhan.setText(dashboard.);
+        holder.tvKeluhan.setText(dashboard.getKeluhan());
         holder.tvTanggalPendaftaran.setText(dashboard.getTanggalPendaftaran());
         holder.tvWaktuPelayanan.setText(dashboard.getWaktuPelayanan());
         holder.tvTanggalPelayanan.setText(dashboard.getTanggalPelayanan());
 
-        if (dashboard.getIdStatus()=="0"){
+        if (dashboard.getIdStatus().equals("0")) {
             holder.tvStatus.setText("Pendaftaran belum terverifikasi");
-            holder.tvInformasi.setText("Menunggu diverifikasi oleh Klinik");
-        }else {
-            holder.tvStatus.setText("Pendaftaran sudah diverifikasi");
+            holder.tvInformasi.setText("Menunggu diverifikasi oleh klinik");
+        } else {
+            holder.tvStatus.setText("Pendaftaran sudah terverifikasi");
             holder.tvInformasi.setText("Silahkan datang ke klinik dengan tepat waktu untuk melakukan konsultasi dan pembayaran. Hasil dokter pada menu riwayat setelah melakukan pembayaran");
-
         }
 
-
-        holder.btnCancel.setOnClickListener(v -> mHandler.onCancleClicked(position, dashboard) );
-
+        holder.btnCancel.setOnClickListener(v -> mHandler.onCancleClicked(position, dashboard));
     }
 
     @Override
@@ -68,29 +65,30 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         return mData.size();
     }
 
-    private void updateView(){
-        if (mData.size()==0)
-            mEmpty.setVisibility(View.VISIBLE);
+    private void updateView() {
+        if (mData.size() == 0)
+            mEmptyView.setVisibility(View.VISIBLE);
         else
-            mEmpty.setVisibility(View.GONE);
+            mEmptyView.setVisibility(View.GONE);
     }
-    public void addDashboard(List<Dashboard> dashboards){
+
+    public void addDashboard(List<Dashboard> dashboards) {
         this.mData.addAll(dashboards);
         notifyDataSetChanged();
 
         updateView();
     }
-    public void removeDashboard(int position){
+
+    public void removeDashboard(int position) {
         this.mData.remove(position);
         notifyDataSetChanged();
 
         updateView();
-
     }
 
-    static class DashboardHolder extends RecyclerView.ViewHolder{
+    static class DashboardHolder extends RecyclerView.ViewHolder {
 
-        final TextView tvNamePasien;
+        final TextView tvNamaPasien;
         final TextView tvJenisKelamin;
         final TextView tvUmur;
         final TextView tvGolDar;
@@ -106,21 +104,21 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         public DashboardHolder(@NonNull View itemView) {
             super(itemView);
 
-             tvNamePasien = itemView.findViewById(R.id.textView_list_item_dashboard_nama);
-             tvJenisKelamin = itemView.findViewById(R.id.textView_list_item_dashboard_gender);
-             tvUmur = itemView.findViewById(R.id.textView_list_item_dashboard_umur);
-             tvGolDar = itemView.findViewById(R.id.textView_list_item_dashboard_goldar);
-             tvKeluhan = itemView.findViewById(R.id.textView_list_item_dashboard_keluhan);
-             tvTanggalPendaftaran = itemView.findViewById(R.id.textView_list_item_dashboard_tanggal_pendaftaran);
-             tvWaktuPelayanan = itemView.findViewById(R.id.textView_list_item_dashboard_waktu_pelayanan);
-             tvTanggalPelayanan = itemView.findViewById(R.id.textView_list_item_dashboard_tanggal_pelayanan);
-
-             tvStatus = itemView.findViewById(R.id.textView_list_item_dashboard_status);
-             tvInformasi = itemView.findViewById(R.id.textView_list_item_dashboard_information);
-             btnCancel = itemView.findViewById(R.id.button_list_item_dashboard_batal);
+            tvNamaPasien = itemView.findViewById(R.id.textview_list_item_dashboard_nama);
+            tvJenisKelamin = itemView.findViewById(R.id.textview_list_item_dashboard_gender);
+            tvUmur = itemView.findViewById(R.id.textview_list_item_dashboard_umur);
+            tvGolDar = itemView.findViewById(R.id.textview_list_item_dashboard_goldar);
+            tvKeluhan = itemView.findViewById(R.id.textview_list_item_dashboard_keluhan);
+            tvTanggalPendaftaran = itemView.findViewById(R.id.textview_list_item_dashboard_tanggal_pendaftaran);
+            tvWaktuPelayanan = itemView.findViewById(R.id.textview_list_item_dashboard_waktu_pelayanan);
+            tvTanggalPelayanan = itemView.findViewById(R.id.textview_list_item_dashboard_tanggal_pelayanan);
+            tvStatus = itemView.findViewById(R.id.textview_list_item_dashboard_status);
+            tvInformasi = itemView.findViewById(R.id.textview_list_item_dashboard_information);
+            btnCancel = itemView.findViewById(R.id.button_list_item_dashboard_batal);
         }
     }
-    public interface ClickHandler{
+
+    public interface ClickHandler {
         void onCancleClicked(int position, Dashboard dashboard);
     }
 }

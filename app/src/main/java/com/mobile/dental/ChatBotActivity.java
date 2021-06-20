@@ -137,8 +137,9 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
         );
         mAdapter.updateChat(chat);
 
-        //autoscroll
+        //auto scroll
         mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
+
         //clear message
         mMessageEdittext.setText("");
 
@@ -166,6 +167,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
 
                 mAdapter.updateChat(chatResult);
 
+                //auto scroll
                 mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
             }
 
@@ -191,7 +193,9 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
         );
         mAdapter.updateChat(chat);
 
+        //auto scroll
         mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
+
         //clear message
         mMessageEdittext.setText("");
 
@@ -229,6 +233,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
 
                 mAdapter.updateChat(chatResult);
 
+                //auto scroll
                 mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
             }
 
@@ -274,7 +279,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
         showLoading(true);
         mAdapter.clear();
 
-        //mengembalikan nilai
+        //mengembalikan nilai yang sebelumnya diinisialisasi diatas kembali ke awal
         isChoose = false;
         numberPickedChoose = null;
 

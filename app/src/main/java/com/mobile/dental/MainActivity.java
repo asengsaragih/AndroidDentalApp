@@ -1,5 +1,6 @@
 package com.mobile.dental;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +26,6 @@ import com.mobile.dental.model.DeletePendaftaran;
 import com.mobile.dental.model.Profile;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ActionBarDrawerToggle mToggle;
     private Button mComplaintsDissaseButton;
     private RecyclerView mDashboardRecycleview;
-    private View mDashboardView;
+    private View mDashboardEmptyView;
     private DashboardAdapter mAdapter;
 
     @Override
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //action dari component
         mComplaintsDissaseButton.setOnClickListener(this);
 
-        //setData
+        //set data dashboard dari api
         setDashboardData();
     }
 
@@ -68,13 +68,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //initial component
         mComplaintsDissaseButton =  findViewById(R.id.button_main_dissase_complaint);
         mDashboardRecycleview = findViewById(R.id.recycle_dashboard);
-        mDashboardView = findViewById(R.id.emptyview_dashboard);
+        mDashboardEmptyView = findViewById(R.id.emptyview_dashboard);
     }
 
-    private void setDashboardData(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),
+    private void setDashboardData() {
+        //set data dashboard dari api
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
+                getApplicationContext(),
                 RecyclerView.VERTICAL,
-                false);
+                false
+        );
 
         DividerItemDecoration itemDecoration = new DividerItemDecoration(
                 getApplicationContext(),
@@ -85,23 +88,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mDashboardRecycleview.addItemDecoration(itemDecoration);
 
         List<Dashboard> dashboardList = new ArrayList<>();
-        mAdapter = new DashboardAdapter(getApplicationContext(), dashboardList, mDashboardView, this::askDelete);
+
+        mAdapter = new DashboardAdapter(getApplicationContext(), dashboardList, mDashboardEmptyView, this::askDelete);
         mDashboardRecycleview.setAdapter(mAdapter);
+
         Call<List<Dashboard>> dashboardCall = mApiService.getDashboard(mSession.getAuthSession().getId());
         dashboardCall.enqueue(new Callback<List<Dashboard>>() {
             @Override
             public void onResponse(Call<List<Dashboard>> call, Response<List<Dashboard>> response) {
-                if (response.code()!=200 || response.body()==null){
+                if (response.code() != 200 || response.body() == null) {
                     return;
                 }
 
                 List<Dashboard> dashboardsResponse = new ArrayList<>();
 
-                for (Dashboard dashboard : response.body()){
-                    if (dashboard.getIdStatus().equals("0") || dashboard.getIdStatus().equals("1")){
+                for (Dashboard dashboard : response.body()) {
+                    if (dashboard.getIdStatus().equals("0") || dashboard.getIdStatus().equals("1")) {
                         dashboardsResponse.add(dashboard);
                     }
                 }
+
+                //ngebalikan data dari 10 ke 1
                 Collections.reverse(dashboardsResponse);
 
                 mAdapter.addDashboard(dashboardsResponse);
@@ -112,35 +119,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
-
-
-
     }
-    private void  askDelete(int position, Dashboard dashboard){
+
+    private void askDelete(int position, Dashboard dashboard) {
+        //fungsi untuk validasi penghapusan
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setTitle("Batalkan Pesanan");
-        builder.setMessage("Apakah anda ingin membatalkan pesanan ini");
-        builder.setNegativeButton("Batal",((dialog, which) -> dialog.dismiss()));
-        builder.setPositiveButton("Ya",((dialog, which) -> {
+        builder.setTitle("Batalkan Pesanan?");
+        builder.setMessage("Apakah anda ingin membatalkan pesanan ini?");
+        builder.setNegativeButton("Batal", (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton("Ya", (dialog, which) -> {
             dialog.dismiss();
-            deleDashboard(position, dashboard);
-        }));
+            deleteDashboard(position, dashboard);
+        });
 
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    private void deleDashboard(int position, Dashboard dashboard){
+
+    private void deleteDashboard(int position, Dashboard dashboard) {
+        //fungsi untuk delete dashboard
         showLoading(true);
+
         Call<DeletePendaftaran> deleteCall = mApiService.cancleDashboard(dashboard.getIdPendaftaran());
         deleteCall.enqueue(new Callback<DeletePendaftaran>() {
             @Override
             public void onResponse(Call<DeletePendaftaran> call, Response<DeletePendaftaran> response) {
-                if (response.code()!=200 || response.body()==null){
+                if (response.code() != 200 || response.body() == null) {
                     showLoading(false);
-                    toast("Gagal menghapus data");
+                    toast("Gagal Menghapus Data");
                     return;
                 }
+
                 showLoading(false);
                 toast(response.body().getMessage());
 
@@ -153,6 +163,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
+
     private void setupDrawerMenu() {
         //initialize component from xml
         DrawerLayout drawer = findViewById(R.id.drawer_main);
@@ -171,18 +182,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             selectItemDrawer(item, drawer);
             return true;
         });
+
         //inisialisasi nama dan email
-        TextView tvName = navigationView.getHeaderView(0).findViewById(R.id.textview_header_nama);
+        TextView tvName = navigationView.getHeaderView(0).findViewById(R.id.textview_header_name);
         TextView tvEmail = navigationView.getHeaderView(0).findViewById(R.id.textview_header_email);
 
-        showName(tvName, tvEmail);
+        showNameAndEmail(tvName, tvEmail);
     }
-    private void showName(TextView tvName, TextView tvEmail){
+
+    private void showNameAndEmail(TextView tvName, TextView tvEmail) {
         Call<List<Profile>> profileCall = mApiService.getUser(mSession.getAuthSession().getId());
         profileCall.enqueue(new Callback<List<Profile>>() {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
-                if (response.code()!=200 || response.body()==null || response.body().size()==0){
+                if (response.code() != 200 || response.body() == null || response.body().size() == 0) {
                     return;
                 }
 

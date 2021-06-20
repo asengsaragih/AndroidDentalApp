@@ -7,6 +7,5 @@ public class Constant {
     public static final int CHAT_TYPE_RIGHT = 2;
 
     public static final String INTENT_UPDATE_PROFILE = "update_profile_intent";
-
-    public static final String INTENT_DETAIL_HISTPRY = "detail_history_intent";
+    public static final String INTENT_DETAIL_HISTORY = "detail_history_intent";
 }

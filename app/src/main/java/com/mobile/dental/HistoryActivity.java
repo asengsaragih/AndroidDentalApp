@@ -45,25 +45,26 @@ public class HistoryActivity extends BaseActivity {
 
         List<History> histories = new ArrayList<>();
 
-
         mAdapter = new HistoryAdapter(this, histories, mEmptyView, new HistoryAdapter.ClickHandler() {
             @Override
             public void onItemClicked(History history) {
                 //dipanggil metode detail popup
-                Intent intent = new Intent(getApplicationContext(),DetailHistoryActivity.class);
-                intent.putExtra(Constant.INTENT_DETAIL_HISTPRY, history);
+                Intent intent = new Intent(getApplicationContext(), DetailHistoryActivity.class);
+                intent.putExtra(Constant.INTENT_DETAIL_HISTORY, history);
                 startActivity(intent);
-
             }
         });
+
         mHistoryRecycleView.setAdapter(mAdapter);
 
         showLoading(true);
+
+        //fungsi untuk manggil data history dari api
         Call<List<History>> historiesCall = mApiService.getHistories(mSession.getAuthSession().getId());
         historiesCall.enqueue(new Callback<List<History>>() {
             @Override
             public void onResponse(Call<List<History>> call, Response<List<History>> response) {
-                if (response.code()!=200 || response.body()== null){
+                if (response.code() != 200 || response.body() == null) {
                     showLoading(false);
                     return;
                 }
@@ -83,5 +84,4 @@ public class HistoryActivity extends BaseActivity {
         mHistoryRecycleView = findViewById(R.id.recycle_history);
         mEmptyView = findViewById(R.id.emptyview_history);
     }
-
-    }
+}
