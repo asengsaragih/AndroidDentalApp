@@ -8,5 +8,4 @@ public class Constant {
 
     public static final String INTENT_UPDATE_PROFILE = "update_profile_intent";
     public static final String INTENT_DETAIL_HISTORY = "detail_history_intent";
-
 }

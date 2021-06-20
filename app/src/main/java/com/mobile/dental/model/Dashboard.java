@@ -15,15 +15,12 @@ public class Dashboard implements Serializable {
     private String umur;
 
     @SerializedName("gol_darah")
-    private String gol_darah;
+    private String golDarah;
 
     private String keluhan;
 
     @SerializedName("tanggal_pendaftaran")
     private String tanggalPendaftaran;
-
-    @SerializedName("waktu_pendaftaran")
-    private String waktuPendaftaran;
 
     @SerializedName("waktu_pelayanan")
     private String waktuPelayanan;
@@ -56,8 +53,8 @@ public class Dashboard implements Serializable {
         return umur;
     }
 
-    public String getGol_darah() {
-        return gol_darah;
+    public String getGolDarah() {
+        return golDarah;
     }
 
     public String getKeluhan() {
@@ -66,10 +63,6 @@ public class Dashboard implements Serializable {
 
     public String getTanggalPendaftaran() {
         return tanggalPendaftaran;
-    }
-
-    public String getWaktuPendaftaran() {
-        return waktuPendaftaran;
     }
 
     public String getWaktuPelayanan() {

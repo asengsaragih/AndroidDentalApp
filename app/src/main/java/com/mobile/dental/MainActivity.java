@@ -1,14 +1,13 @@
 package com.mobile.dental;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,14 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.mobile.dental.adapter.DashboardAdapter;
 import com.mobile.dental.base.BaseActivity;
 import com.mobile.dental.model.Dashboard;
-import com.mobile.dental.model.DashboardAdapter;
 import com.mobile.dental.model.DeletePendaftaran;
 import com.mobile.dental.model.Profile;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,7 +35,6 @@ import retrofit2.Response;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "MainActivityTAG";
     private ActionBarDrawerToggle mToggle;
     private Button mComplaintsDissaseButton;
     private RecyclerView mDashboardRecycleview;
@@ -63,49 +60,55 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //action dari component
         mComplaintsDissaseButton.setOnClickListener(this);
 
-        //setdata dashboard dari api
+        //set data dashboard dari api
         setDashboardData();
     }
 
     private void init() {
         //initial component
         mComplaintsDissaseButton =  findViewById(R.id.button_main_dissase_complaint);
-        mDashboardEmptyView = findViewById(R.id.emptyview_dashboard);
         mDashboardRecycleview = findViewById(R.id.recycle_dashboard);
+        mDashboardEmptyView = findViewById(R.id.emptyview_dashboard);
     }
-    private void setDashboardData(){
+
+    private void setDashboardData() {
+        //set data dashboard dari api
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 getApplicationContext(),
                 RecyclerView.VERTICAL,
-                false);
+                false
+        );
+
         DividerItemDecoration itemDecoration = new DividerItemDecoration(
                 getApplicationContext(),
                 layoutManager.getOrientation()
         );
+
         mDashboardRecycleview.setLayoutManager(layoutManager);
         mDashboardRecycleview.addItemDecoration(itemDecoration);
 
         List<Dashboard> dashboardList = new ArrayList<>();
 
-        mAdapter = new DashboardAdapter(getApplicationContext(), dashboardList,mDashboardEmptyView, this::askDelete);
+        mAdapter = new DashboardAdapter(getApplicationContext(), dashboardList, mDashboardEmptyView, this::askDelete);
         mDashboardRecycleview.setAdapter(mAdapter);
+
         Call<List<Dashboard>> dashboardCall = mApiService.getDashboard(mSession.getAuthSession().getId());
         dashboardCall.enqueue(new Callback<List<Dashboard>>() {
             @Override
             public void onResponse(Call<List<Dashboard>> call, Response<List<Dashboard>> response) {
-                Log.d(TAG, "onResponse: " + response.code());
-                if (response.code() != 200 || response.body() == null){
+                if (response.code() != 200 || response.body() == null) {
                     return;
                 }
+
                 List<Dashboard> dashboardsResponse = new ArrayList<>();
 
-                for (Dashboard dashboard : response.body()){
-                    if (dashboard.getIdStatus().equals("0")||dashboard.getIdStatus().equals("1")){
+                for (Dashboard dashboard : response.body()) {
+                    if (dashboard.getIdStatus().equals("0") || dashboard.getIdStatus().equals("1")) {
                         dashboardsResponse.add(dashboard);
                     }
                 }
 
-                //ngebalikan data
+                //ngebalikan data dari 10 ke 1
                 Collections.reverse(dashboardsResponse);
 
                 mAdapter.addDashboard(dashboardsResponse);
@@ -118,33 +121,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
-    private void askDelete(int position, Dashboard dashboard){
+    private void askDelete(int position, Dashboard dashboard) {
+        //fungsi untuk validasi penghapusan
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setTitle("Batalkan Pesanan ? ");
-        builder.setMessage("Apakah anda ingin membatalkan pesanan ini ? ");
+        builder.setTitle("Batalkan Pesanan?");
+        builder.setMessage("Apakah anda ingin membatalkan pesanan ini?");
         builder.setNegativeButton("Batal", (dialog, which) -> dialog.dismiss());
-        builder.setPositiveButton("Ya",(dialog, which) -> {
+        builder.setPositiveButton("Ya", (dialog, which) -> {
             dialog.dismiss();
             deleteDashboard(position, dashboard);
-
         });
+
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void deleteDashboard(int position, Dashboard dashboard){
+    private void deleteDashboard(int position, Dashboard dashboard) {
+        //fungsi untuk delete dashboard
         showLoading(true);
 
-        Call<DeletePendaftaran> deleteCall = mApiService.cancelDashboard(dashboard.getIdPendaftaran());
+        Call<DeletePendaftaran> deleteCall = mApiService.cancleDashboard(dashboard.getIdPendaftaran());
         deleteCall.enqueue(new Callback<DeletePendaftaran>() {
             @Override
             public void onResponse(Call<DeletePendaftaran> call, Response<DeletePendaftaran> response) {
-                if (response.code() != 200 || response.body() == null){
+                if (response.code() != 200 || response.body() == null) {
                     showLoading(false);
-                    toast("gagal hapus data");
+                    toast("Gagal Menghapus Data");
                     return;
                 }
+
                 showLoading(false);
                 toast(response.body().getMessage());
 
@@ -153,7 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<DeletePendaftaran> call, Throwable t) {
-                    showLoading(false);
+                showLoading(false);
             }
         });
     }
@@ -176,11 +182,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             selectItemDrawer(item, drawer);
             return true;
         });
+
         //inisialisasi nama dan email
-        TextView tvName = navigationView.getHeaderView(0).findViewById(R.id.textview_header_nama);
+        TextView tvName = navigationView.getHeaderView(0).findViewById(R.id.textview_header_name);
         TextView tvEmail = navigationView.getHeaderView(0).findViewById(R.id.textview_header_email);
 
-            showNameAndEmail(tvName,tvEmail);
+        showNameAndEmail(tvName, tvEmail);
     }
 
     private void showNameAndEmail(TextView tvName, TextView tvEmail) {
@@ -188,12 +195,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         profileCall.enqueue(new Callback<List<Profile>>() {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
-                if (response.code() != 200 || response.body() == null || response.body().size() == 0){
+                if (response.code() != 200 || response.body() == null || response.body().size() == 0) {
                     return;
-            }
+                }
+
                 tvName.setText(response.body().get(0).getFullname());
                 tvEmail.setText(response.body().get(0).getEmail());
-        }
+            }
 
             @Override
             public void onFailure(Call<List<Profile>> call, Throwable t) {

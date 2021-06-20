@@ -58,7 +58,7 @@ public class History implements Serializable {
         return resep;
     }
 
-    public String getTanggalWaktu(){
+    public String getTanggalWaktu() {
         return tanggal + " | " + waktu;
     }
 }

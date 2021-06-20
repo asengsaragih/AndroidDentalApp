@@ -88,9 +88,9 @@ public interface ApiService {
     @GET("index.php/api/User_Klinik/checkUpResult/{idPasien}")
     Call<List<History>> getHistories(@Path("idPasien") String idPasien);
 
-    @GET("index.php/api/User_Klinik/cancelByPasien/{idUser}")
+    @GET("index.php/api/User_Klinik/pasien/{idUser}")
     Call<List<Dashboard>> getDashboard(@Path("idUser") String idUser);
 
     @POST("index.php/api/User_Klinik/cancelByPasien/{idPendaftaran}")
-    Call<DeletePendaftaran> cancelDashboard(@Path("idPendaftaran") String idPendaftaran);
+    Call<DeletePendaftaran> cancleDashboard(@Path("idPendaftaran") String idPendaftaran);
 }

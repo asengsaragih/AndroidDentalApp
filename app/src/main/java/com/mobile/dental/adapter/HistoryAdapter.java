@@ -53,7 +53,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         return mData.size();
     }
 
-    public void updateEmptyView(){
+    public void updateEmptyView() {
         //fungsi untuk mengatur list jika data kosong
         if (mData.size() == 0)
             mEmptyView.setVisibility(View.VISIBLE);
@@ -61,7 +61,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
             mEmptyView.setVisibility(View.GONE);
     }
 
-    public void updateData(List<History> histories){
+    public void updateData(List<History> histories) {
         this.mData.addAll(histories);
         notifyDataSetChanged();
 
