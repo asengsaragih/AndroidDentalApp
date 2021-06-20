@@ -1,28 +1,30 @@
 package com.mobile.dental;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.mobile.dental.adapter.HistoryAdapter;
 import com.mobile.dental.base.BaseActivity;
+import com.mobile.dental.base.Constant;
 import com.mobile.dental.model.History;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HistoryActivity extends BaseActivity {
 
     private static final String TAG = "HistoryActivityTag";
     private RecyclerView mHistoryRecycleView;
     private View mEmptyView;
+    private HistoryAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,49 +45,43 @@ public class HistoryActivity extends BaseActivity {
 
         List<History> histories = new ArrayList<>();
 
-        //pengisian list item
-        histories.add(new History("14 jan 2020 | 15.30 WIB", "Halo saya ini text"));
-        histories.add(new History("13 jan 2020 | 15.30 WIB", "Halo saya ini text"));
-        histories.add(new History("14 jan 2020 | 15.30 WIB", "Halo saya ini text"));
-        histories.add(new History("16 jan 2020 | 15.30 WIB", "Halo saya ini text"));
-        histories.add(new History("17 jan 2020 | 15.30 WIB", "Halo saya ini text"));
-        histories.add(new History("18 jan 2020 | 15.30 WIB", "Halo saya ini text"));
 
-        HistoryAdapter adapter = new HistoryAdapter(this, histories, mEmptyView, new HistoryAdapter.ClickHandler() {
+        mAdapter = new HistoryAdapter(this, histories, mEmptyView, new HistoryAdapter.ClickHandler() {
             @Override
             public void onItemClicked(History history) {
                 //dipanggil metode detail popup
-                detailPopUp(history);
+                Intent intent = new Intent(getApplicationContext(),DetailHistoryActivity.class);
+                intent.putExtra(Constant.INTENT_DETAIL_HISTPRY, history);
+                startActivity(intent);
+
             }
         });
-        mHistoryRecycleView.setAdapter(adapter);
-        adapter.updateEmptyView();
+        mHistoryRecycleView.setAdapter(mAdapter);
+
+        showLoading(true);
+        Call<List<History>> historiesCall = mApiService.getHistories(mSession.getAuthSession().getId());
+        historiesCall.enqueue(new Callback<List<History>>() {
+            @Override
+            public void onResponse(Call<List<History>> call, Response<List<History>> response) {
+                if (response.code()!=200 || response.body()== null){
+                    showLoading(false);
+                    return;
+                }
+
+                showLoading(false);
+                mAdapter.updateData(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<History>> call, Throwable t) {
+                showLoading(false);
+            }
+        });
     }
 
     private void init() {
         mHistoryRecycleView = findViewById(R.id.recycle_history);
         mEmptyView = findViewById(R.id.emptyview_history);
     }
-    private void detailPopUp (History history){
-        //fungsi untuk menampilkan detail dalam bentuk pop up
-        //init component yang dibutuhkan untuk membuat popup
-        //pakai import -> "import android.x
-        AlertDialog.Builder builder = new AlertDialog.Builder(HistoryActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_history, null);
 
-        //set view nya
-        builder.setView(view);
-
-        //inisialisasi componen yang berasal dari dialog
-        TextView date = view.findViewById(R.id.textView_dialog_history_date);
-        TextView content = view.findViewById(R.id.textView_dialog_history_content);
-
-        //set data dari list item
-        date.setText(history.getDate());
-        content.setText(history.getContent());
-
-        //show dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
-}

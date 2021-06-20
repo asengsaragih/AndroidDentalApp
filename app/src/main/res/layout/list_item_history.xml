@@ -19,18 +19,27 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="8dp">
 
-            <TextView
+
+             <TextView
                 android:id="@+id/textView_list_item_history_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:gravity="end"
                 tools:text="12 Desember 1987 | 15.40" />
+
+            <TextView
+                android:id="@+id/textview_list_item_history_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+                tools:text="Ricard"/>
 
             <TextView
                 android:id="@+id/textView_list_item_history_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:textColor="@android:color/darker_gray"
                 android:maxLines="2"
                 tools:text="Lorem ipsum dot simetri can buy happinese inside your body" />
 
