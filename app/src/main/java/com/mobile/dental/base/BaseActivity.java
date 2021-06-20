@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,45 +34,36 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
 
-        //disini ngoding seluruh fungsi yang dipanggil berulang ulang
-        //contoh kaya toast dan lainnya
-        //pemanggilan, tinggal ganti extend actvity nya ke baseActivity
-        //contohnya ada di main activity
-
-        //intialize session
+        //intilize session
         mSession = new Session(this);
 
         //request api
         mApiService = ApiClient.builder().create(ApiService.class);
 
-        //inisialisasi loading bar
+        //inisialisasi loding bar
         loadingInitialize();
     }
 
     private void loadingInitialize() {
-        //function for loading bar in dialog box
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.progress_loading, null);
+        View view= LayoutInflater.from(this).inflate(R.layout.progress_loading, null);
         builder.setView(view);
         builder.setCancelable(false);
         mLoadingDialog = builder.create();
     }
 
-    protected void showLoading(boolean show) {
-        //fungsi untuk menampilkan loading diseluruh activity yang terdaftar
+    protected void showLoading (boolean show){
         if (show)
             mLoadingDialog.show();
         else
             mLoadingDialog.dismiss();
     }
-
-    protected boolean isEdittextEmpty(EditText editText) {
+    protected boolean isEdittextEmpty(EditText editText){
         //fungsi untuk check value dari edittext
         return TextUtils.isEmpty(editText.getText().toString());
     }
-
-    protected void toast(String message) {
-        //fungsi untuk menampilkan toast secara simple
+    protected void toast(String message){
+        //fungsi untuk menampilkan toast
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 

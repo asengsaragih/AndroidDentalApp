@@ -1,7 +1,5 @@
 package com.mobile.dental;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -29,22 +27,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener{
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "RegisterActivityTag";
 
     private Doctor pickedDoctor = null;
 
     private EditText mDateEdittext;
-    private AutoCompleteTextView mDoctorSpinner;
     private final Calendar mCalendar = Calendar.getInstance();
+    private AutoCompleteTextView mDoctorSpinner;
     private AutoCompleteTextView mGolonganDarahSpinner;
     private AutoCompleteTextView mTimeSpinner;
-    private EditText mFullnameEditText;
-    private EditText mAgeEditText;
-    private EditText mKeluhanEditText;
+    private EditText mFullnameEdittext;
+    private EditText mAgeEdittext;
+    private EditText mKeluhanEdittext;
     private Button mSubmitButton;
     private RadioGroup mGenderRadioGroup;
     private RadioButton mPriaRadioButton;
     private RadioButton mWanitaRadioButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         init();
     }
 
-    private void init(){
+    private void init() {
         //inisilaisasi component
         mDateEdittext = findViewById(R.id.ediittext_register);
 
@@ -66,13 +67,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mGolonganDarahSpinner = findViewById(R.id.spinner_register_golongan_darah);
         mTimeSpinner = findViewById(R.id.spinner_register_time);
 
-        mFullnameEditText = findViewById(R.id.edittext_register_fullname);
-        mAgeEditText = findViewById(R.id.edittext_register_age);
-        mKeluhanEditText = findViewById(R.id.edittext_register_keluhan);
+        mFullnameEdittext = findViewById(R.id.edittext_register_name);
+        mAgeEdittext = findViewById(R.id.edittext_register_age);
+        mKeluhanEdittext = findViewById(R.id.edittext_register_keluhan);
         mSubmitButton = findViewById(R.id.button_register_submit);
         mGenderRadioGroup = findViewById(R.id.radioGroup_register_gender);
-        mPriaRadioButton = findViewById(R.id.radioButton_register_gender_pria);
-        mWanitaRadioButton = findViewById(R.id.radioButton_register_gender_wanita);
+        mPriaRadioButton = findViewById(R.id.radioButton_register_pria);
+        mWanitaRadioButton = findViewById(R.id.radioButton_register_wanita);
 
         //submit
         mSubmitButton.setOnClickListener(this);
@@ -113,11 +114,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                 mDoctorSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //remove jam
                         mTimeSpinner.setText("");
 
-                        Doctor doctor = (Doctor) adapterView.getItemAtPosition(i);
+                        Doctor doctor = (Doctor) parent.getItemAtPosition(position);
+
+                        //masukkan doctor ke picked
+                        pickedDoctor = doctor;
+
                         List<String> timeList = new ArrayList<>(doctor.getJamPraktik());
+
                         ArrayAdapter timeAdapter = new ArrayAdapter<>(
                                 getApplicationContext(),
                                 android.R.layout.simple_list_item_1,
@@ -127,6 +134,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         mTimeSpinner.setAdapter(timeAdapter);
                     }
                 });
+
+
             }
 
             @Override
@@ -138,7 +147,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ediittext_register:
                 datePickerDialog(mCalendar, mDateEdittext);
                 break;
@@ -149,14 +158,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void submit() {
-        if (pickedDoctor == null){
+        if (pickedDoctor == null) {
             toast("Harap isi semua form");
             return;
         }
 
-        if (isEdittextEmpty(mFullnameEditText)
-                && isEdittextEmpty(mAgeEditText)
-                && isEdittextEmpty(mKeluhanEditText)
+        if (isEdittextEmpty(mFullnameEdittext)
+                && isEdittextEmpty(mAgeEdittext)
+                && isEdittextEmpty(mKeluhanEdittext)
                 && isEdittextEmpty(mDateEdittext)
                 && isEdittextEmpty(mTimeSpinner)) {
 
@@ -167,10 +176,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         SimpleDateFormat dateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.getDefault());
         Calendar calendar = Calendar.getInstance();
 
-        String fullname = mFullnameEditText.getText().toString();
-        String age = mAgeEditText.getText().toString();
+        String fullname = mFullnameEdittext.getText().toString();
+        String age = mAgeEdittext.getText().toString();
         String golonganDarah = mGolonganDarahSpinner.getText().toString();
-        String keluhan = mKeluhanEditText.getText().toString();
+        String keluhan = mKeluhanEdittext.getText().toString();
         String jenisKelamin = getGender();
         String tanggalPendaftaran = dateFormat.format(calendar.getTime());
         String tanggalPelayanan = mDateEdittext.getText().toString();
@@ -187,8 +196,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 tanggalPendaftaran,
                 waktuPelayanan,
                 tanggalPelayanan,
-                idDokter,
                 idUser,
+                idDokter,
                 "1"
         );
 
@@ -214,20 +223,21 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-    private String getGender(){
+    private String getGender() {
+        // methode for getting category in radio group
         int id = mGenderRadioGroup.getCheckedRadioButtonId();
         RadioButton button = findViewById(id);
 
         if (button.getText().toString().equals("Pria"))
-            return  "L";
+            return "L";
         else
-            return  "P";
+            return "P";
     }
 
-    private void datePickerDialog(Calendar calendar, EditText editText){
+    private void datePickerDialog(Calendar calendar, EditText editText) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.getDefault());
 
-        DatePickerDialog.OnDateSetListener dataSetListener = (datePicker, year, month, dayOfMonth)-> {
+        DatePickerDialog.OnDateSetListener dataSetListener = (datePicker, year, month, dayOfMonth) -> {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -235,7 +245,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             editText.setText(simpleDateFormat.format(calendar.getTime()));
         };
 
-        editText.setOnClickListener(view ->{
+        editText.setOnClickListener(view -> {
             DatePickerDialog dialog = new DatePickerDialog(
                     RegisterActivity.this,
                     dataSetListener,

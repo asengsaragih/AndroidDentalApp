@@ -7,5 +7,4 @@ public class Constant {
     public static final int CHAT_TYPE_RIGHT = 2;
 
     public static final String INTENT_UPDATE_PROFILE = "update_profile_intent";
-
 }

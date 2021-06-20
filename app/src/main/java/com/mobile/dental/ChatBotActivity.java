@@ -1,18 +1,17 @@
 package com.mobile.dental;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.dental.adapter.ChatBotAdapter;
 import com.mobile.dental.base.BaseActivity;
@@ -28,6 +27,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChatBotActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "ChatBotActivityTag";
 
     private EditText mMessageEdittext;
     private Button mSendButton;
@@ -92,6 +93,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onFailure(Call<Bot> call, Throwable t) {
                 showLoading(false);
+                Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
     }
@@ -107,9 +109,9 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_chat_bot_send:
-                if (isEditTextEmpty(mMessageEdittext))
+                if (isEditTextEmpty(mMessageEdittext)) {
                     return;
-                else {
+                } else {
                     if (!isChoose) {
                         send();
                     } else {
@@ -223,9 +225,10 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onFailure(Call<List<Bot.Chatbot>> call, Throwable t) {
-
+                Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+
     }
 
     private static boolean isNumeric(String str) {
@@ -280,6 +283,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onFailure(Call<Bot> call, Throwable t) {
                 showLoading(false);
+                Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
     }

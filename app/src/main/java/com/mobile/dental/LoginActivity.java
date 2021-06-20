@@ -1,10 +1,13 @@
 package com.mobile.dental;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.mobile.dental.base.BaseActivity;
 import com.mobile.dental.model.Auth;
@@ -26,8 +29,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
 
-        //ccheck session, kalau session masih ada langsung ngarahin / intent ke main
-        if (mSession.getAuthSession() != null && mSession.getAuthSession().getEmail() != null) {
+        //check session, kalau session masih ada langsung ngarahin / intent ke main
+        if (mSession.getAuthSession() != null && mSession.getAuthSession().getEmail() != null){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -46,7 +49,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void init() {
         loginToRegister = findViewById(R.id.view_login_to_register);
         mLoginButton = findViewById(R.id.button_login);
-
         mUsernameEdittext = findViewById(R.id.edittext_login_username);
         mPasswordEdittext = findViewById(R.id.edittext_login_password);
     }
@@ -55,7 +57,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginToRegister.setOnClickListener(this);
         mLoginButton.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -71,12 +72,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void login() {
         //fungsi untuk login
-        if (isEdittextEmpty(mUsernameEdittext) && isEdittextEmpty(mPasswordEdittext)) {
+        if (isEdittextEmpty(mUsernameEdittext) && isEdittextEmpty(mPasswordEdittext)){
             toast("Field tidak boleh kosong");
             return;
         }
-
-        //tampilkan loading
+        //tampilan loading
         showLoading(true);
 
         //execute fungsi nya ke api
@@ -87,26 +87,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginCall.enqueue(new Callback<Auth>() {
             @Override
             public void onResponse(Call<Auth> call, Response<Auth> response) {
-                if (response.code() != 200 || response.body() == null) {
+                if (response.code() != 200 || response.body() == null){
                     //login gagal permasalahan internet
                     showLoading(false);
                     toast("Login gagal");
                     return;
                 }
 
-                //validate login data
+                //validasi login data
                 showLoading(false);
-
                 Auth auth = response.body();
 
                 //validate account
-                if (auth.getEmail() == null) {
+                if (auth.getEmail()==null){
                     //username atau password salah
                     toast(auth.getMessage());
                     return;
                 }
-
-                //save session auth data in sharedpreferences
+                //save session auth data in sharedpreference
                 mSession.setAuthSession(auth);
 
                 //intent to main activity
@@ -116,9 +114,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onFailure(Call<Auth> call, Throwable t) {
-                //login gagal permasalahan sistem
                 showLoading(false);
-                toast("Login gagal");
+                toast("login gagal");
             }
         });
     }

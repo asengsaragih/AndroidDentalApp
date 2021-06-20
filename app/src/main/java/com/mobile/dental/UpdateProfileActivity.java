@@ -1,7 +1,5 @@
 package com.mobile.dental;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,7 +39,7 @@ public class UpdateProfileActivity extends BaseActivity implements View.OnClickL
         mUsernameEdittext = findViewById(R.id.edittext_update_profile_username);
         mPasswordEdittext = findViewById(R.id.edittext_update_profile_password);
         mEmailEdittext = findViewById(R.id.edittext_update_profile_email);
-        mContactEdittext = findViewById(R.id.edittext_update_profile_kontak);
+        mContactEdittext = findViewById(R.id.edittext_update_profile_contact);
 
         mUpdateButton = findViewById(R.id.button_update_profile_save);
     }
@@ -57,7 +55,6 @@ public class UpdateProfileActivity extends BaseActivity implements View.OnClickL
         mPasswordEdittext.setText(profile.getPassword());
         mEmailEdittext.setText(profile.getEmail());
         mContactEdittext.setText(profile.getKontak());
-
     }
 
     private Profile getProfileData() {
@@ -66,8 +63,8 @@ public class UpdateProfileActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.button_update_profile_save:
                 updateProfile();
                 break;
@@ -76,11 +73,11 @@ public class UpdateProfileActivity extends BaseActivity implements View.OnClickL
 
     private void updateProfile() {
         //fungsi untuk update profile
-        if (isEdittextEmpty(mFullnameEdittext) ||
-                isEdittextEmpty(mUsernameEdittext) ||
-                isEdittextEmpty(mPasswordEdittext) ||
-                isEdittextEmpty(mEmailEdittext) ||
-                isEdittextEmpty(mContactEdittext)) {
+        if (isEdittextEmpty(mFullnameEdittext)
+                || isEdittextEmpty(mUsernameEdittext)
+                || isEdittextEmpty(mPasswordEdittext)
+                || isEdittextEmpty(mEmailEdittext)
+                || isEdittextEmpty(mContactEdittext)) {
             toast("Field tidak boleh kosong");
             return;
         }
@@ -100,19 +97,18 @@ public class UpdateProfileActivity extends BaseActivity implements View.OnClickL
             public void onResponse(Call<UpdateProfileResult> call, Response<UpdateProfileResult> response) {
                 showLoading(false);
 
-                if (response.code() == 200 && response.body() != null){
+                if (response.code() == 200 && response.body() != null) {
                     toast(response.body().getMessage());
 
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     finish();
                 } else {
                     toast("error update data");
 
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     finish();
-
                 }
             }
 

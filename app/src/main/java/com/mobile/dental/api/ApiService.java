@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    //untuk login
+    //login
     @FormUrlEncoded
     @POST("index.php/api/User_Klinik/login")
     Call<Auth> login(
@@ -27,18 +27,18 @@ public interface ApiService {
             @Field("pass") String password
     );
 
-    //untuk register
+    //register
     @FormUrlEncoded
     @POST("index.php/api/User_Klinik/register")
     Call<Register> register(
             @Field("username") String username,
-            @Field("pass") String pass,
+            @Field("pass") String password,
             @Field("email") String email,
             @Field("contact") String contact,
             @Field("fullname") String fullname
     );
 
-    //untuk form pendaftaran
+    //post untuk pendaftaran pasien
     @FormUrlEncoded
     @POST("index.php/api/User_Klinik/pasien")
     Call<PasientResponse> postPasient(
@@ -73,13 +73,12 @@ public interface ApiService {
             @Field("kontak") String kontak
     );
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/0/0")
+    @GET("index.php/api/User_Klinik/chatbot/0/0")
     Call<Bot> getInitialBot();
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/0")
+    @GET("index.php/api/User_Klinik/chatbot/{idLayanan}/0")
     Call<List<Bot.Chatbot>> chooseLayanan(@Path("idLayanan") String code);
 
-    @GET("https://dental-clinic-telu.000webhostapp.com/index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
+    @GET("index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
     Call<List<Bot.Chatbot>> resultDeskripsi(@Path("idLayanan") String code, @Path("idResult") String idResult);
 }
-

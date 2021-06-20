@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.mobile.dental.R;
 import com.mobile.dental.model.Doctor;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class SpinnerDoctorAdapter extends ArrayAdapter<Doctor> {
         Doctor doctor = getItem(position);
 
         if (doctor != null) {
-            if (doctor.getStatus().equals("Unavailable")){
+            if (doctor.getStatus().equals("Available")) {
                 tvName.setText(doctor.getName());
             }
         }

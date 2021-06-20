@@ -41,7 +41,7 @@
             android:textColor="@android:color/darker_gray"/>
 
         <TextView
-            android:id="@+id/textview_profile_fullname"
+            android:id="@+id/textview_profile_fulname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="-"/>
@@ -101,7 +101,7 @@
             android:textColor="@android:color/darker_gray"/>
 
         <TextView
-            android:id="@+id/textview_profile_kontak"
+            android:id="@+id/textview_profile_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="-"/>

@@ -13,6 +13,7 @@ public class Auth implements Serializable {
 
     private String email;
     private String contact;
+
     private String fullname;
 
     public Auth(String status, String message, String id, String email, String contact, String fullname) {

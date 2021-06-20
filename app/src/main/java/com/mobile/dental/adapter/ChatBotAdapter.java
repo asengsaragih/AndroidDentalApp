@@ -18,7 +18,7 @@ import java.util.List;
 public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.ChatBotHolder> {
 
     private final Context mContext;
-    private List<Chat> mData;
+    private final List<Chat> mData;
 
     public ChatBotAdapter(Context mContext, List<Chat> mData) {
         this.mContext = mContext;
