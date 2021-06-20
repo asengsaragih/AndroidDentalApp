@@ -12,7 +12,6 @@
         android:layout_marginBottom="24dp"
         android:text="Pendaftaran berhasil diverifikasi" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

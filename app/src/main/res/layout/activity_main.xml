@@ -24,26 +24,24 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <include
-                layout="@layout/layout_empty_home"
+                layout="@layout/layout_verify_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_main_disease_complaints"
+            android:id="@+id/button_main_dissase_complaint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:cornerRadius="8dp"
             android:layout_marginBottom="24dp"
-            android:text="Cari Keluhan Anda"
             android:paddingVertical="16dp"
+            android:text="Cari Keluhan Anda"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -51,10 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/header_navigation_drawer"
         android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:headerLayout="@layout/header_navigation_drawer"
         app:itemIconTint="@color/purple_500"
-        app:menu="@menu/drawer_menu"/>
-
-
+        app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

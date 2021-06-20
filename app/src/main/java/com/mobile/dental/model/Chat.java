@@ -12,7 +12,6 @@ public class Chat implements Serializable {
         this.time = time;
         this.type = type;
     }
-
     public String getText() {
         return text;
     }

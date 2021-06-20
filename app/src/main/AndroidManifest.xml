@@ -11,10 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dental">
-        <activity
-            android:name=".ChatBotActivity"
-            android:label="Chat Bot"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ChatBotActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Chat Bot"></activity>
         <activity
             android:name=".UpdateProfileActivity"
             android:label="Update Profile"
@@ -24,7 +23,7 @@
             android:theme="@style/Theme.Dental.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
-            android:label="Profile"
+            android:label="profile"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"

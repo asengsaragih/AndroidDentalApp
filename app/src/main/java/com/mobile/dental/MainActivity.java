@@ -14,11 +14,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
+import com.mobile.dental.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ActionBarDrawerToggle mToggle;
-    private Button mComplaintsDiseaseButton;
+    private Button mComplaintsDissaseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //initial component
         init();
 
-        //set data
+        //setData
         setData();
 
         //configure drawer menu
@@ -36,13 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setData() {
-        //action dari komponent
-        mComplaintsDiseaseButton.setOnClickListener(this);
+        //action dari component
+        mComplaintsDissaseButton.setOnClickListener(this);
     }
 
     private void init() {
-        //initial component in layout
-        mComplaintsDiseaseButton = findViewById(R.id.button_main_disease_complaints);
+        //initial component
+        mComplaintsDissaseButton =  findViewById(R.id.button_main_dissase_complaint);
     }
 
     private void setupDrawerMenu() {
@@ -78,11 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.action_history:
                 drawerLayout.closeDrawers();
-                new Handler().postDelayed(() -> { startActivity(new Intent(this, HistoryActivity.class)); }, 250);
+                new Handler().postDelayed(() -> {startActivity(new Intent(this, HistoryActivity.class));
+                }, 250);
                 break;
             case R.id.action_profile:
                 drawerLayout.closeDrawers();
-                new Handler().postDelayed(() -> { startActivity(new Intent(this, ProfileActivity.class)); }, 250);
+                new Handler().postDelayed(() -> {startActivity(new Intent(this, ProfileActivity.class));
+                }, 250);
                 break;
         }
     }
@@ -94,18 +97,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
+        if (mToggle.onOptionsItemSelected(item)){
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_main_disease_complaints:
-                startActivity(new Intent(getApplicationContext(), ChatBotActivity.class));
+        switch (v.getId()){
+            case R.id.button_main_dissase_complaint:
+                startActivity(new Intent(getApplicationContext(),ChatBotActivity.class));
                 break;
         }
     }

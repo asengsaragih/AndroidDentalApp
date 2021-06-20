@@ -18,7 +18,7 @@ import java.util.List;
 public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.ChatBotHolder> {
 
     private final Context mContext;
-    private List<Chat> mData;
+    private final List<Chat> mData;
 
     public ChatBotAdapter(Context mContext, List<Chat> mData) {
         this.mContext = mContext;
@@ -62,6 +62,11 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.ChatBotH
 
     public void updateChat(Chat chat) {
         this.mData.add(chat);
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        this.mData.clear();
         notifyDataSetChanged();
     }
 
