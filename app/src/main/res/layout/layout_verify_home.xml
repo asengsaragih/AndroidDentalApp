@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
     android:paddingVertical="8dp">
 
     <TextView
+        android:id="@+id/textview_list_item_dashboard_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -25,11 +27,104 @@
             android:text="Nama" />
 
         <TextView
+            android:id="@+id/textview_list_item_dashboard_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            android:text="Artika"
+            tools:text="Artika"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:text="Jenis Kelamin" />
+
+        <TextView
+            android:id="@+id/textview_list_item_dashboard_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            tools:text="P"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:text="Umur" />
+
+        <TextView
+            android:id="@+id/textview_list_item_dashboard_umur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            tools:text="23"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:text="Golongan Darah" />
+
+        <TextView
+            android:id="@+id/textview_list_item_dashboard_goldar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            tools:text="A"
+            android:textColor="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="start"
+            android:text="Keluhan" />
+
+        <TextView
+            android:id="@+id/textview_list_item_dashboard_keluhan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="end"
+            tools:text="Gusi Bengkak"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
@@ -47,11 +142,12 @@
             android:text="Tanggal Pendaftaran" />
 
         <TextView
+            android:id="@+id/textview_list_item_dashboard_tanggal_pendaftaran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            android:text="10/03/21"
+            tools:text="2021-05-23"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
@@ -66,14 +162,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="start"
-            android:text="No. Pendaftaran" />
+            android:text="Waktu Pelayanan" />
 
         <TextView
+            android:id="@+id/textview_list_item_dashboard_waktu_pelayanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            android:text="DC001"
+            tools:text="15:30"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
@@ -88,36 +185,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="start"
-            android:text="No. Pendaftaran" />
+            android:text="Tanggal Pelayanan" />
 
         <TextView
+            android:id="@+id/textview_list_item_dashboard_tanggal_pelayanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            android:text="DC001"
-            android:textColor="@android:color/darker_gray" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="start"
-            android:text="No. Pendaftaran" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="end"
-            android:text="DC001"
+            tools:text="2021-05-27"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
@@ -129,12 +205,13 @@
         android:text="Informasi" />
 
     <TextView
+        android:id="@+id/textview_list_item_dashboard_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Silahkan datang ke klinik dengan tepat waktu untuk melakukan konsultasi dan pembayaran. Hasil dokter pada menu riwayat setelah melakukan pembayaran" />
 
-
     <Button
+        android:id="@+id/button_list_item_dashboard_batal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

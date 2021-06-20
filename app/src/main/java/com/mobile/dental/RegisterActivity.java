@@ -198,7 +198,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 tanggalPelayanan,
                 idUser,
                 idDokter,
-                "1"
+                "0"
         );
 
         call.enqueue(new Callback<PasientResponse>() {

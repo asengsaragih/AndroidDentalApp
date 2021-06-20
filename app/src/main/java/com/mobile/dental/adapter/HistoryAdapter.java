@@ -39,8 +39,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
     public void onBindViewHolder(@NonNull HistoryHolder holder, int position) {
         History history = mData.get(position);
 
-        holder.date.setText(history.getDate());
-        holder.content.setText(history.getContent());
+        holder.date.setText(history.getTanggalWaktu());
+        holder.content.setText(history.getHasil());
+        holder.name.setText(history.getName());
 
         holder.itemView.setOnClickListener(v -> {
             mHandler.onItemClicked(history);
@@ -52,7 +53,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         return mData.size();
     }
 
-    public void updateEmptyView(){
+    public void updateEmptyView() {
         //fungsi untuk mengatur list jika data kosong
         if (mData.size() == 0)
             mEmptyView.setVisibility(View.VISIBLE);
@@ -60,16 +61,25 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
             mEmptyView.setVisibility(View.GONE);
     }
 
+    public void updateData(List<History> histories) {
+        this.mData.addAll(histories);
+        notifyDataSetChanged();
+
+        updateEmptyView();
+    }
+
     static class HistoryHolder extends RecyclerView.ViewHolder {
 
         final TextView date;
         final TextView content;
+        final TextView name;
 
         public HistoryHolder(@NonNull View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.textView_list_item_history_date);
             content = itemView.findViewById(R.id.textView_list_item_history_content);
+            name = itemView.findViewById(R.id.textView_list_item_history_name);
         }
     }
 
