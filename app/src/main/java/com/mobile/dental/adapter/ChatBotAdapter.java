@@ -70,6 +70,15 @@ public class ChatBotAdapter extends RecyclerView.Adapter<ChatBotAdapter.ChatBotH
         notifyDataSetChanged();
     }
 
+    //ini fungsi untuk ngambil nilai terakhir dr list agar dapat scroll
+    //ketika ada inputan baru
+    public int getLastPosition() {
+        if (mData.size() == 0)
+            return 0;
+        else
+            return mData.size() - 1;
+    }
+
     static class ChatBotHolder extends RecyclerView.ViewHolder {
 
         final TextView chatLeft;

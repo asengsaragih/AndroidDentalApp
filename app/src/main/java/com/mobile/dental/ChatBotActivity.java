@@ -136,6 +136,10 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
                 Constant.CHAT_TYPE_RIGHT
         );
         mAdapter.updateChat(chat);
+
+        //auto scroll
+        mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
+
         //clear message
         mMessageEdittext.setText("");
 
@@ -162,6 +166,9 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
                 );
 
                 mAdapter.updateChat(chatResult);
+
+                //auto scroll
+                mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
             }
 
             @Override
@@ -185,6 +192,10 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
                 Constant.CHAT_TYPE_RIGHT
         );
         mAdapter.updateChat(chat);
+
+        //auto scroll
+        mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
+
         //clear message
         mMessageEdittext.setText("");
 
@@ -206,7 +217,7 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
                 StringBuilder result = new StringBuilder("Pilih keluhan anda" + "\n\n");
 
                 for (Bot.Chatbot chatbot : chooseResponse) {
-                    result.append(chatbot.getId()).append(". ");
+                    result.append(chatbot.getContent()).append(". ");
                     result.append(chatbot.getKeyword()).append("\n");
                 }
 
@@ -221,6 +232,9 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
                 );
 
                 mAdapter.updateChat(chatResult);
+
+                //auto scroll
+                mChatRecycle.smoothScrollToPosition(mAdapter.getLastPosition());
             }
 
             @Override
@@ -264,6 +278,10 @@ public class ChatBotActivity extends BaseActivity implements View.OnClickListene
         //buat ulang tampilan
         showLoading(true);
         mAdapter.clear();
+
+        //mengembalikan nilai yang sebelumnya diinisialisasi diatas kembali ke awal
+        isChoose = false;
+        numberPickedChoose = null;
 
         Call<Bot> botCall = mApiService.getInitialBot();
         botCall.enqueue(new Callback<Bot>() {
