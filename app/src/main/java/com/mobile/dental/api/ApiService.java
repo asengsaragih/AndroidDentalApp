@@ -2,7 +2,10 @@ package com.mobile.dental.api;
 
 import com.mobile.dental.model.Auth;
 import com.mobile.dental.model.Bot;
+import com.mobile.dental.model.Dashboard;
+import com.mobile.dental.model.DeletePendaftaran;
 import com.mobile.dental.model.Doctor;
+import com.mobile.dental.model.History;
 import com.mobile.dental.model.PasientResponse;
 import com.mobile.dental.model.Profile;
 import com.mobile.dental.model.Register;
@@ -81,4 +84,13 @@ public interface ApiService {
 
     @GET("index.php/api/User_Klinik/chatbot/{idLayanan}/{idResult}")
     Call<List<Bot.Chatbot>> resultDeskripsi(@Path("idLayanan") String code, @Path("idResult") String idResult);
+
+    @GET("index.php/api/User_Klinik/checkUpResult/{idPasien}")
+    Call<List<History>> getHistories(@Path("idPasien") String idPasien);
+
+    @GET("index.php/api/User_Klinik/cancelByPasien/{idUser}")
+    Call<List<Dashboard>> getDashboard(@Path("idUser") String idUser);
+
+    @POST("index.php/api/User_Klinik/cancelByPasien/{idPendaftaran}")
+    Call<DeletePendaftaran> cancelDashboard(@Path("idPendaftaran") String idPendaftaran);
 }

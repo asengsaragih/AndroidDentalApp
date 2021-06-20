@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".DetailHistoryActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID Pendaftaran"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textview_detail_history_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="P17"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Pasien"/>
+
+    <TextView
+        android:id="@+id/textview_detail_history_pasien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Yulio"
+        android:textColor="@android:color/darker_gray"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Dokter"/>
+    <TextView
+        android:id="@+id/textview_detail_history_dokter"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hana Widi"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Pelayanan"/>
+    <TextView
+        android:id="@+id/textview_detail_history_tanggal_pelayanan"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2021-09-09"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Waktu Pelayanan"/>
+    <TextView
+        android:id="@+id/textview_detail_history_waktu_pelayanan"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2021-09-09"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hasil"/>
+    <TextView
+        android:id="@+id/textview_detail_history_hasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2021-09-09"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saran"/>
+    <TextView
+        android:id="@+id/textview_detail_history_saran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2021-09-09"
+        android:textColor="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resep"/>
+    <TextView
+        android:id="@+id/textview_detail_history_resep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2021-09-09"
+        android:textColor="@android:color/darker_gray"/>
+
+
+</LinearLayout>

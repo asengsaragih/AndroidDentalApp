@@ -51,9 +51,13 @@ public class Bot implements Serializable {
 
     public class Chatbot implements Serializable {
         private String id;
+        private String content;
         private String keyword;
         private String deskripsi;
 
+        public String getContent() {
+            return content;
+        }
         public Integer getIdInt() {
             return Integer.parseInt(id);
         }
