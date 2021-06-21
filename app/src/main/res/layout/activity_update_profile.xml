@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Fullname">
+            android:hint="Nama Lengkap">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_update_profile_fullname"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Username">
+            android:hint="Nama Pengguna">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_update_profile_username"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password">
+            android:hint="Kata Sandi">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_update_profile_password"
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Contact">
+            android:hint="Kontak">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_update_profile_contact"
@@ -100,7 +100,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:paddingVertical="16dp"
-        android:text="SImpan"
+        android:text="Simpan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

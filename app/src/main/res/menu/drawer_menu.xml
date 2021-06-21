@@ -6,19 +6,23 @@
         <item
             android:id="@+id/action_home"
             android:icon="@drawable/ic_home"
-            android:title="Home"
+            android:title="Beranda"
             android:checked="true" />
         <item
             android:id="@+id/action_daftar"
             android:icon="@drawable/ic_add"
-            android:title="Daftar" />
+            android:title="Pendaftaran" />
         <item
             android:id="@+id/action_history"
             android:icon="@drawable/ic_history"
-            android:title="History" />
+            android:title="Riwayat Pendaftaran" />
         <item
             android:id="@+id/action_profile"
             android:icon="@drawable/ic_person"
-            android:title="Profile" />
+            android:title="Profil" />
+        <item
+            android:id="@+id/action_maps"
+            android:icon="@drawable/ic_map"
+            android:title="Lokasi Klinik" />
     </group>
 </menu>

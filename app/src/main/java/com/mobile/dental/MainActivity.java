@@ -237,6 +237,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(new Intent(this, ProfileActivity.class));
                 }, 250);
                 break;
+            case R.id.action_maps:
+                drawerLayout.closeDrawers();
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(this, MapsActivity.class));
+                }, 250);
+                break;
         }
     }
 

@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/action_edit"
-        android:title="Edit Profile"/>
+        android:title="Sunting Profil" />
     <item
         android:id="@+id/action_sign_out"
-        android:title="Sign Out"/>
+        android:title="Keluar" />
 </menu>

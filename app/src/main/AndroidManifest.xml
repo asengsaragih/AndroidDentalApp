@@ -12,24 +12,31 @@
         android:roundIcon="@drawable/ic_dental_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dental">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="Lokasi Klinik"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".DetailHistoryActivity"
-            android:label="Detail History"
-            android:parentActivityName=".HistoryActivity"/>
+            android:label="Detail Riwayat Pendaftaran"
+            android:parentActivityName=".HistoryActivity" />
         <activity
             android:name=".ChatBotActivity"
-            android:label="Chat Bot"
+            android:label="Cari Keluhan Anda"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UpdateProfileActivity"
-            android:label="Update Profile"
+            android:label="Perbarui Profil"
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".SignupActivity"
             android:theme="@style/Theme.Dental.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
-            android:label="Profile"
+            android:label="Profil"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
@@ -42,13 +49,13 @@
         </activity>
         <activity
             android:name=".HistoryActivity"
-            android:label="History"
+            android:label="Riwayat Pendaftaran"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterActivity"
             android:label="Pendaftaran Konsultasi"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
