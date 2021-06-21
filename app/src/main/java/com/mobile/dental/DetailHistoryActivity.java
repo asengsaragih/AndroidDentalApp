@@ -11,44 +11,44 @@ import com.mobile.dental.model.History;
 
 public class DetailHistoryActivity extends BaseActivity {
 
-    private TextView mIdPendaftaranTextview;
-    private TextView mPasienTextview;
-    private TextView mDokterTextview;
-    private TextView mTanggalTextview;
-    private TextView mWaktuTextview;
-    private TextView mHasilTextview;
-    private TextView mSaranTextview;
-    private TextView mResepTextview;
+    private TextView mIdPendaftaranTextView;
+    private TextView mNamaPasienTextView;
+    private TextView mDokterTextView;
+    private TextView mTanggalTextView;
+    private TextView mWaktuTextView;
+    private TextView mHasilTextView;
+    private TextView mSaranTextView;
+    private TextView mResepTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_history);
-
+        
         init();
         setData();
     }
 
     private void init() {
-        mIdPendaftaranTextview = findViewById(R.id.textview_detail_history_id_pendaftaran);
-        mPasienTextview = findViewById(R.id.textview_detail_history_pasien);
-        mDokterTextview = findViewById(R.id.textview_detail_history_dokter);
-        mTanggalTextview = findViewById(R.id.textview_detail_history_tanggal);
-        mWaktuTextview = findViewById(R.id.textview_detail_history_waktu);
-        mHasilTextview = findViewById(R.id.textview_detail_history_hasil);
-        mSaranTextview = findViewById(R.id.textview_detail_history_saran);
-        mResepTextview = findViewById(R.id.textview_detail_history_resep);
+        mIdPendaftaranTextView = findViewById(R.id.textview_detail_history_id_pendaftaran);
+        mNamaPasienTextView = findViewById(R.id.textview_detail_history_pasient);
+        mDokterTextView = findViewById(R.id.textview_detail_history_dokter);
+        mTanggalTextView = findViewById(R.id.textview_detail_history_tanggal);
+        mWaktuTextView = findViewById(R.id.textview_detail_history_waktu);
+        mHasilTextView = findViewById(R.id.textview_detail_history_hasil);
+        mSaranTextView = findViewById(R.id.textview_detail_history_saran);
+        mResepTextView = findViewById(R.id.textview_detail_history_resep);
     }
 
     private void setData() {
-        mIdPendaftaranTextview.setText(getHistoryData().getId());
-        mPasienTextview.setText(getHistoryData().getName());
-        mDokterTextview.setText(getHistoryData().getDokter());
-        mTanggalTextview.setText(getHistoryData().getTanggal());
-        mWaktuTextview.setText(getHistoryData().getWaktu());
-        mHasilTextview.setText(getHistoryData().getHasil());
-        mSaranTextview.setText(getHistoryData().getSaran());
-        mResepTextview.setText(getHistoryData().getResep());
+        mIdPendaftaranTextView.setText(getHistoryData().getId());
+        mNamaPasienTextView.setText(getHistoryData().getName());
+        mDokterTextView.setText(getHistoryData().getDokter());
+        mTanggalTextView.setText(getHistoryData().getTanggal());
+        mWaktuTextView.setText(getHistoryData().getWaktu());
+        mHasilTextView.setText(getHistoryData().getHasil());
+        mSaranTextView.setText(getHistoryData().getSaran());
+        mResepTextView.setText(getHistoryData().getResep());
     }
 
     private History getHistoryData() {

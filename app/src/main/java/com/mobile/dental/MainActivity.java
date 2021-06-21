@@ -1,6 +1,5 @@
 package com.mobile.dental;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ActionBarDrawerToggle mToggle;
     private Button mComplaintsDissaseButton;
-    private RecyclerView mDashboardRecycleview;
+    private RecyclerView mDashboardRecyclerView;
     private View mDashboardEmptyView;
     private DashboardAdapter mAdapter;
 
@@ -66,13 +65,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void init() {
         //initial component
-        mComplaintsDissaseButton =  findViewById(R.id.button_main_dissase_complaint);
-        mDashboardRecycleview = findViewById(R.id.recycle_dashboard);
+        mComplaintsDissaseButton = findViewById(R.id.button_main_dissase_complaint);
+        mDashboardRecyclerView = findViewById(R.id.recycle_dashboard);
         mDashboardEmptyView = findViewById(R.id.emptyview_dashboard);
     }
 
     private void setDashboardData() {
-        //set data dashboard dari api
+        //set data dashboard dr api
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 getApplicationContext(),
                 RecyclerView.VERTICAL,
@@ -84,13 +83,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 layoutManager.getOrientation()
         );
 
-        mDashboardRecycleview.setLayoutManager(layoutManager);
-        mDashboardRecycleview.addItemDecoration(itemDecoration);
+        mDashboardRecyclerView.setLayoutManager(layoutManager);
+        mDashboardRecyclerView.addItemDecoration(itemDecoration);
 
         List<Dashboard> dashboardList = new ArrayList<>();
 
-        mAdapter = new DashboardAdapter(getApplicationContext(), dashboardList, mDashboardEmptyView, this::askDelete);
-        mDashboardRecycleview.setAdapter(mAdapter);
+        mAdapter = new DashboardAdapter(
+                getApplicationContext(),
+                dashboardList,
+                mDashboardEmptyView,
+                this::askDelete);
+
+        mDashboardRecyclerView.setAdapter(mAdapter);
 
         Call<List<Dashboard>> dashboardCall = mApiService.getDashboard(mSession.getAuthSession().getId());
         dashboardCall.enqueue(new Callback<List<Dashboard>>() {
@@ -100,18 +104,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     return;
                 }
 
-                List<Dashboard> dashboardsResponse = new ArrayList<>();
+                List<Dashboard> dashboardResponse = new ArrayList<>();
 
                 for (Dashboard dashboard : response.body()) {
                     if (dashboard.getIdStatus().equals("0") || dashboard.getIdStatus().equals("1")) {
-                        dashboardsResponse.add(dashboard);
+                        dashboardResponse.add(dashboard);
                     }
                 }
 
-                //ngebalikan data dari 10 ke 1
-                Collections.reverse(dashboardsResponse);
+                //ngereverse data
+                Collections.reverse(dashboardResponse);
 
-                mAdapter.addDashboard(dashboardsResponse);
+                mAdapter.addDashboard(dashboardResponse);
             }
 
             @Override
@@ -125,7 +129,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //fungsi untuk validasi penghapusan
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setTitle("Batalkan Pesanan?");
+        builder.setTitle("Batalakan Pesanan?");
         builder.setMessage("Apakah anda ingin membatalkan pesanan ini?");
         builder.setNegativeButton("Batal", (dialog, which) -> dialog.dismiss());
         builder.setPositiveButton("Ya", (dialog, which) -> {
@@ -223,12 +227,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.action_history:
                 drawerLayout.closeDrawers();
-                new Handler().postDelayed(() -> {startActivity(new Intent(this, HistoryActivity.class));
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(this, HistoryActivity.class));
                 }, 250);
                 break;
             case R.id.action_profile:
                 drawerLayout.closeDrawers();
-                new Handler().postDelayed(() -> {startActivity(new Intent(this, ProfileActivity.class));
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(this, ProfileActivity.class));
+                }, 250);
+                break;
+            case R.id.action_maps:
+                drawerLayout.closeDrawers();
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(this, MapsActivity.class));
                 }, 250);
                 break;
         }
@@ -241,7 +253,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -249,9 +261,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button_main_dissase_complaint:
-                startActivity(new Intent(getApplicationContext(),ChatBotActivity.class));
+                startActivity(new Intent(getApplicationContext(), ChatBotActivity.class));
                 break;
         }
     }

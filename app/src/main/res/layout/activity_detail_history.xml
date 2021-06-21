@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="ID Pendaftaran"/>
+        android:text="Id Pendaftaran"/>
 
     <TextView
         android:id="@+id/textview_detail_history_id_pendaftaran"
@@ -28,11 +28,11 @@
         android:text="Nama Pasien"/>
 
     <TextView
-        android:id="@+id/textview_detail_history_pasien"
+        android:id="@+id/textview_detail_history_pasient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Michael Afro"/>
+        tools:text="Richard Afro"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Hana Widi"/>
+        tools:text="drg. Hani"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="15:30"/>
+        tools:text="11.00"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -110,6 +110,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        tools:text="Paracetamol 500mg"/>
-
+        tools:text="Paracetamol"/>
 </LinearLayout>
