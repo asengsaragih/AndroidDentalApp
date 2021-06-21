@@ -2,6 +2,7 @@ package com.mobile.dental;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +33,6 @@ public class HistoryActivity extends BaseActivity {
         setContentView(R.layout.activity_history);
 
         //insialisasi componen yg ada di dalam layout
-
         init();
 
         //untuk set data atau pemanggilan data
@@ -52,18 +52,20 @@ public class HistoryActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), DetailHistoryActivity.class);
                 intent.putExtra(Constant.INTENT_DETAIL_HISTORY, history);
                 startActivity(intent);
+
             }
         });
-
         mHistoryRecycleView.setAdapter(mAdapter);
 
         showLoading(true);
 
-        //fungsi untuk manggil data history dari api
+        //fungsi untuk memanggil data history dari api
         Call<List<History>> historiesCall = mApiService.getHistories(mSession.getAuthSession().getId());
         historiesCall.enqueue(new Callback<List<History>>() {
             @Override
             public void onResponse(Call<List<History>> call, Response<List<History>> response) {
+                Log.d(TAG, "onResponse: " + response.code());
+                Log.d(TAG, "onResponse: " + response.body().size());
                 if (response.code() != 200 || response.body() == null) {
                     showLoading(false);
                     return;
@@ -72,6 +74,7 @@ public class HistoryActivity extends BaseActivity {
                 showLoading(false);
                 mAdapter.updateData(response.body());
             }
+
 
             @Override
             public void onFailure(Call<List<History>> call, Throwable t) {

@@ -28,10 +28,10 @@
 
             <TextView
                 android:id="@+id/textView_list_item_history_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="Richard"/>
+                tools:text="Richard" />
 
             <TextView
                 android:id="@+id/textView_list_item_history_content"

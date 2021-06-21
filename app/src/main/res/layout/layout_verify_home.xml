@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="end"
-            tools:text="15:30"
+            tools:text="15.30"
             android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>

@@ -17,8 +17,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User ID"
-            android:textColor="@android:color/darker_gray"/>
+            android:text="ID Pengguna"
+            android:textColor="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/textview_profile_uid"
@@ -37,8 +37,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fullname"
-            android:textColor="@android:color/darker_gray"/>
+            android:text="Nama Lengkap"
+            android:textColor="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/textview_profile_fulname"
@@ -57,8 +57,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username"
-            android:textColor="@android:color/darker_gray"/>
+            android:text="Nama Pengguna"
+            android:textColor="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/textview_profile_username"

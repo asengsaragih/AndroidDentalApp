@@ -15,7 +15,7 @@ import com.mobile.dental.model.Dashboard;
 
 import java.util.List;
 
-public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashboardHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.DashbordHolder> {
 
     private final Context mContext;
     private final List<Dashboard> mData;
@@ -31,13 +31,13 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
     @NonNull
     @Override
-    public DashboardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DashbordHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_verify_home, parent, false);
-        return new DashboardHolder(view);
+        return new DashbordHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DashboardAdapter.DashboardHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DashbordHolder holder, int position) {
         Dashboard dashboard = mData.get(position);
 
         holder.tvNamaPasien.setText(dashboard.getNamaPasient());
@@ -51,13 +51,14 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
         if (dashboard.getIdStatus().equals("0")) {
             holder.tvStatus.setText("Pendaftaran belum terverifikasi");
-            holder.tvInformasi.setText("Menunggu diverifikasi oleh klinik");
+            holder.tvInformasi.setText("Menunggu diverifikasi olek klinik");
         } else {
             holder.tvStatus.setText("Pendaftaran sudah terverifikasi");
             holder.tvInformasi.setText("Silahkan datang ke klinik dengan tepat waktu untuk melakukan konsultasi dan pembayaran. Hasil dokter pada menu riwayat setelah melakukan pembayaran");
         }
 
-        holder.btnCancel.setOnClickListener(v -> mHandler.onCancleClicked(position, dashboard));
+        holder.btnCancle.setOnClickListener(v -> mHandler.onCancleClicked(position, dashboard));
+
     }
 
     @Override
@@ -86,7 +87,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
         updateView();
     }
 
-    static class DashboardHolder extends RecyclerView.ViewHolder {
+    static class DashbordHolder extends RecyclerView.ViewHolder {
 
         final TextView tvNamaPasien;
         final TextView tvJenisKelamin;
@@ -99,9 +100,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
 
         final TextView tvStatus;
         final TextView tvInformasi;
-        final Button btnCancel;
+        final Button btnCancle;
 
-        public DashboardHolder(@NonNull View itemView) {
+        public DashbordHolder(@NonNull View itemView) {
             super(itemView);
 
             tvNamaPasien = itemView.findViewById(R.id.textview_list_item_dashboard_nama);
@@ -112,9 +113,11 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Dash
             tvTanggalPendaftaran = itemView.findViewById(R.id.textview_list_item_dashboard_tanggal_pendaftaran);
             tvWaktuPelayanan = itemView.findViewById(R.id.textview_list_item_dashboard_waktu_pelayanan);
             tvTanggalPelayanan = itemView.findViewById(R.id.textview_list_item_dashboard_tanggal_pelayanan);
+
             tvStatus = itemView.findViewById(R.id.textview_list_item_dashboard_status);
             tvInformasi = itemView.findViewById(R.id.textview_list_item_dashboard_information);
-            btnCancel = itemView.findViewById(R.id.button_list_item_dashboard_batal);
+            btnCancle = itemView.findViewById(R.id.button_list_item_dashboard_batal);
+
         }
     }
 
